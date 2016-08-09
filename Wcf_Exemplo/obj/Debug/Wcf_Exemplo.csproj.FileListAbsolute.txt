@@ -1,0 +1,8 @@
+C:\Users\bruno.marques\Documents\Visual Studio 2012\Projects\Wcf_Exemplo\Wcf_Exemplo\bin\Wcf_Exemplo.dll
+C:\Users\bruno.marques\Documents\Visual Studio 2012\Projects\Wcf_Exemplo\Wcf_Exemplo\bin\Wcf_Exemplo.pdb
+C:\Users\bruno.marques\Documents\Visual Studio 2012\Projects\Wcf_Exemplo\Wcf_Exemplo\bin\EntityFramework.dll
+C:\Users\bruno.marques\Documents\Visual Studio 2012\Projects\Wcf_Exemplo\Wcf_Exemplo\bin\EntityFramework.SqlServer.dll
+C:\Users\bruno.marques\Documents\Visual Studio 2012\Projects\Wcf_Exemplo\Wcf_Exemplo\bin\EntityFramework.xml
+C:\Users\bruno.marques\Documents\Visual Studio 2012\Projects\Wcf_Exemplo\Wcf_Exemplo\bin\EntityFramework.SqlServer.xml
+C:\Users\bruno.marques\Documents\Visual Studio 2012\Projects\Wcf_Exemplo\Wcf_Exemplo\obj\Debug\Wcf_Exemplo.dll
+C:\Users\bruno.marques\Documents\Visual Studio 2012\Projects\Wcf_Exemplo\Wcf_Exemplo\obj\Debug\Wcf_Exemplo.pdb

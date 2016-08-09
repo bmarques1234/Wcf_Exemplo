@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClientesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="50" />
+    <Property Name="Endereco" Type="varchar" MaxLength="50" />
+    <Property Name="Cidade" Type="varchar" MaxLength="50" />
+    <Property Name="Estado" Type="nchar" MaxLength="10" />
+    <Property Name="Telefone" Type="varchar" MaxLength="50" />
+    <Property Name="Obs" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Contatos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Telefone" Type="varchar" MaxLength="50" />
+    <Property Name="Cliente" Type="int" />
+  </EntityType>
+  <Association Name="FK_Contatos_Clientes">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Contatos" Type="Self.Contatos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contatos">
+        <PropertyRef Name="Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ClientesModelStoreContainer">
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contatos" EntityType="Self.Contatos" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Contatos_Clientes" Association="Self.FK_Contatos_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Contatos" EntitySet="Contatos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
