@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ClientesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ClientesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clientes" EntityType="ClientesModel.Clientes" />
+    <EntitySet Name="Contatos" EntityType="ClientesModel.Contatos" />
+    <AssociationSet Name="FK_Contatos_Clientes" Association="ClientesModel.FK_Contatos_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Contatos" EntitySet="Contatos" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="Clientes">
     <Key>
       <PropertyRef Name="Id" />
@@ -11,7 +19,7 @@
     <Property Name="Estado" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="Telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Obs" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Contatos" Relationship="Self.FK_Contatos_Clientes" FromRole="Clientes" ToRole="Contatos" />
+    <NavigationProperty Name="Contatos" Relationship="ClientesModel.FK_Contatos_Clientes" FromRole="Clientes" ToRole="Contatos" />
   </EntityType>
   <EntityType Name="Contatos">
     <Key>
@@ -22,13 +30,13 @@
     <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Cliente" Type="Int32" />
-    <NavigationProperty Name="Clientes" Relationship="Self.FK_Contatos_Clientes" FromRole="Contatos" ToRole="Clientes" />
+    <NavigationProperty Name="Clientes" Relationship="ClientesModel.FK_Contatos_Clientes" FromRole="Contatos" ToRole="Clientes" />
   </EntityType>
   <Association Name="FK_Contatos_Clientes">
-    <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1">
+    <End Type="ClientesModel.Clientes" Role="Clientes" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="Contatos" Type="Self.Contatos" Multiplicity="*" />
+    <End Type="ClientesModel.Contatos" Role="Contatos" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Clientes">
         <PropertyRef Name="Id" />
@@ -38,12 +46,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ClientesEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Clientes" EntityType="Self.Clientes" />
-    <EntitySet Name="Contatos" EntityType="Self.Contatos" />
-    <AssociationSet Name="FK_Contatos_Clientes" Association="Self.FK_Contatos_Clientes">
-      <End Role="Clientes" EntitySet="Clientes" />
-      <End Role="Contatos" EntitySet="Contatos" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>

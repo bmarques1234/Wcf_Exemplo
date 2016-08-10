@@ -6,3 +6,4 @@ C:\Users\bruno.marques\Documents\Visual Studio 2012\Projects\Wcf_Exemplo\Wcf_Exe
 C:\Users\bruno.marques\Documents\Visual Studio 2012\Projects\Wcf_Exemplo\Wcf_Exemplo\bin\EntityFramework.SqlServer.xml
 C:\Users\bruno.marques\Documents\Visual Studio 2012\Projects\Wcf_Exemplo\Wcf_Exemplo\obj\Debug\Wcf_Exemplo.dll
 C:\Users\bruno.marques\Documents\Visual Studio 2012\Projects\Wcf_Exemplo\Wcf_Exemplo\obj\Debug\Wcf_Exemplo.pdb
+C:\Users\bruno.marques\Documents\Visual Studio 2012\Projects\Wcf_Exemplo\Wcf_Exemplo\obj\Debug\Wcf_Exemplo.csprojResolveAssemblyReference.cache

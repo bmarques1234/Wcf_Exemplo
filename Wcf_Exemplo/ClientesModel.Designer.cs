@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'c:\users\bruno.marques\documents\visual studio 2012\Projects\Wcf_Exemplo\Wcf_Exemplo\ClientesModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\bruno.marques\Documents\Visual Studio 2012\Projects\Wcf_Exemplo\Wcf_Exemplo\ClientesModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

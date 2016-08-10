@@ -8,6 +8,7 @@ using System.ServiceModel.Description;
 using System.Text;
 using System.Collections.ObjectModel;
 using System.Windows;
+using Wcf_Exemplo.DTO;
 
 namespace Wcf_Exemplo
 {
@@ -16,7 +17,6 @@ namespace Wcf_Exemplo
     public class Service1 : IService1
     {
         ClientesEntities _context = new ClientesEntities();
-        ObservableCollection<Clientes> cliLista = new ObservableCollection<Clientes>();
 
         public Clientes CreateClient()
         {
@@ -32,13 +32,37 @@ namespace Wcf_Exemplo
             return true;
         }
 
-        public ObservableCollection<Clientes> SearchClient()
+        public List<ClienteBag> SearchClient()
         {
-            foreach (var c in _context.Clientes)
+            try
             {
-                cliLista.Add(c);
+                var clientes = (from c in _context.Clientes
+                                select new ClienteBag()
+                                {
+                                    Cidade = c.Cidade,
+                                    Endereco = c.Endereco,
+                                    Estado = c.Estado,
+                                    Id = c.Id,
+                                    Nome = c.Nome,
+                                    Obs = c.Obs,
+                                    Telefone = c.Telefone/*,
+                                    Contatos = c.Contatos.Select(x => new ContatoBag() 
+                                    { 
+                                        Cliente = x.Cliente,
+                                        Email = x.Email,
+                                        Id = x.Id,
+                                        Nome = x.Nome,
+                                        Telefone = x.Telefone
+                                    })*/
+                                }).ToList();
+                return clientes;
             }
-            return cliLista;
+            catch(CommunicationException e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
         }
 
         public bool UpdateClient()
@@ -47,12 +71,20 @@ namespace Wcf_Exemplo
             return true;
         }
 
-        public Clientes CreateContact(object cliObj)
+        public ContatoBag CreateContact(object cliObj)
         {
             Clientes cli = (Clientes)cliObj;
             Contatos con = new Contatos() { Cliente = cli.Id, Nome = "Não identificado" };
             cli.Contatos.Add(con);
-            return cli;
+            var contato = new ContatoBag()
+                           {
+                               Cliente = cli.Id,
+                               Email = con.Email,
+                               Id = con.Id,
+                               Nome = con.Nome,
+                               Telefone = con.Telefone
+                           };
+            return contato;
         }
 
         public bool DeleteContact(object cliObj, object conObj)
@@ -63,67 +95,20 @@ namespace Wcf_Exemplo
             return true;
         }
 
-        public List<Contatos> SearchContact(object cliObj)
+        public List<ContatoBag> SearchContact(object cliObj)
         {
-            Clientes cli = (Clientes)cliObj;
-            List<Contatos> ListCon = new List<Contatos>();
-            foreach (var c in cli.Contatos)
-            {
-                ListCon.Add(c);
-            }
-            return ListCon;
-        }
-    }
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Uri baseAddress = new Uri("http://localhost:8080/service1");
-
-            // Create the ServiceHost.
-            using (ServiceHost host = new ServiceHost(typeof(Service1), baseAddress))
-            {
-                // Enable metadata publishing.
-                ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
-                smb.HttpGetEnabled = true;
-                smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
-                host.Description.Behaviors.Add(smb);
-
-                // Open the ServiceHost to start listening for messages. Since
-                // no endpoints are explicitly configured, the runtime will create
-                // one endpoint per base address for each service contract implemented
-                // by the service.
-                host.Open();
-            }
-
-
-            /*var uri = new Uri("http://localhost:8888/WcfSelfhostedService");
-
-            var host = new ServiceHost(typeof(Service1), uri);
-
-            //Enable realiable sessions
-            var wsHttpBinding = new WSHttpBinding
-            {
-                ReliableSession = { Enabled = true, Ordered = true }
-            };
-
-            //Disable security. Is's ok for now.
-            wsHttpBinding.Security.Mode = SecurityMode.None;
-            host.AddServiceEndpoint(typeof(IService1), wsHttpBinding, "service");
-
-            //Enable metadata publishing
-            var smb = new ServiceMetadataBehavior
-            {
-                HttpGetEnabled = true,
-                MetadataExporter = { PolicyVersion = PolicyVersion.Policy15 }
-            };
-
-            //Generate policy information with the metadata that conforms to WS-Policy1.5
-            host.Description.Behaviors.Add(smb);
-
-            //Open host
-            host.Open();*/
+            ClienteBag cli = (ClienteBag)cliObj;
+            var contatos = (from c in _context.Contatos
+                            where c.Cliente == cli.Id
+                            select new ContatoBag()
+                            {
+                                Cliente = c.Cliente,
+                                Email = c.Email,
+                                Id = c.Id,
+                                Nome = c.Nome,
+                                Telefone = c.Telefone
+                            }).ToList();
+            return contatos;
         }
     }
 }

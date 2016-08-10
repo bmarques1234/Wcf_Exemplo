@@ -4,24 +4,24 @@
     <EntitySetMapping Name="Clientes">
       <EntityTypeMapping TypeName="ClientesModel.Clientes">
         <MappingFragment StoreEntitySet="Clientes">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Nome" ColumnName="Nome" />
-          <ScalarProperty Name="Endereco" ColumnName="Endereco" />
-          <ScalarProperty Name="Cidade" ColumnName="Cidade" />
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
           <ScalarProperty Name="Obs" ColumnName="Obs" />
+          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+          <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Contatos">
       <EntityTypeMapping TypeName="ClientesModel.Contatos">
         <MappingFragment StoreEntitySet="Contatos">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Nome" ColumnName="Nome" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
           <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
