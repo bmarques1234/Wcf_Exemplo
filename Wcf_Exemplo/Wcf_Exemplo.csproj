@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="DTO\ClienteBag.cs" />
     <Compile Include="DTO\ContatoBag.cs" />
+    <Compile Include="Filters\SearchFilters.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>

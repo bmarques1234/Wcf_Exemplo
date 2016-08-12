@@ -16,25 +16,25 @@ namespace Wcf_Exemplo
     {
 
         [OperationContract]
-        Clientes CreateClient();
+        bool CreateClient();
 
         [OperationContract]
-        bool DeleteClient(object cliObj);
+        bool DeleteClient(ClienteBag cliObj);
 
         [OperationContract]
-        List<ClienteBag> SearchClient();
+        List<ClienteBag> SearchClient(string query, string value);
 
         [OperationContract]
-        bool UpdateClient();
+        bool UpdateClient(ClienteBag cliObj);
+        
+        [OperationContract]
+        ContatoBag CreateContact(ClienteBag cliObj);
 
         [OperationContract]
-        ContatoBag CreateContact(object cliObj);
+        bool DeleteContact(ClienteBag cliObj, ContatoBag conObj);
 
         [OperationContract]
-        bool DeleteContact(object cliObj, object conObj);
-
-        [OperationContract]
-        List<ContatoBag> SearchContact(object cliObj);
+        List<ContatoBag> SearchContact(ClienteBag cliObj);
 
         // TODO: Add your service operations here
     }
