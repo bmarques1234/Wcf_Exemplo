@@ -47,6 +47,33 @@ namespace Wcf_Exemplo
             return true;
         }
 
+        public ClienteBag SearchClientByID(string ID)
+        {
+            int idnumber = int.Parse(ID);
+            var cliente = (from c in _context.Clientes
+                           where c.Id == idnumber
+                           select new ClienteBag()
+                           {
+                               Cidade = c.Cidade,
+                               Endereco = c.Endereco,
+                               Estado = c.Estado,
+                               Id = c.Id,
+                               Nome = c.Nome,
+                               Obs = c.Obs,
+                               Telefone = c.Telefone,
+                               Contatos = c.Contatos.Select(x => new ContatoBag()
+                               {
+                                   Cliente = x.Cliente,
+                                   Email = x.Email,
+                                   Id = x.Id,
+                                   Nome = x.Nome,
+                                   Telefone = x.Telefone
+                               })
+                           });
+            var cli = cliente.FirstOrDefault<ClienteBag>();
+            return cli;
+        }
+
         public List<ClienteBag> SearchClient(string query, string value)
         {
             SearchFilters filters = new SearchFilters();

@@ -22,6 +22,9 @@ namespace Wcf_Exemplo
         bool DeleteClient(ClienteBag cliObj);
 
         [OperationContract]
+        ClienteBag SearchClientByID(string ID);
+
+        [OperationContract]
         List<ClienteBag> SearchClient(string query, string value);
 
         [OperationContract]
